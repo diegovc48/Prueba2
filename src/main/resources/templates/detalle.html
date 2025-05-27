@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle de Película</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      color: #222;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: rgb(0, 0, 128);
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    .sinopsis {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="titulo">Título de la película</h1>
+    <iframe id="video" src="" allowfullscreen></iframe>
+    <p class="sinopsis" id="sinopsis">Aquí irá la sinopsis cargada según el ID.</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    const peliculas = {
+      1: {
+        titulo: "Lilo y Stitch",
+        video: "https://www.youtube.com/embed/6HoGvFfJw0I", // Tráiler de ejemplo
+        sinopsis: "Una niña hawaiana adopta un perro que en realidad es un experimento alienígena."
+      },
+      2: {
+        titulo: "Mufasa: La Precuela",
+        video: "https://www.youtube.com/embed/VIDEO_ID",
+        sinopsis: "Historia que revela los orígenes del gran rey Mufasa, padre de Simba."
+      }
+      // Puedes seguir agregando más películas aquí
+    };
+
+    const pelicula = peliculas[id];
+
+    if (pelicula) {
+      document.getElementById('titulo').textContent = pelicula.titulo;
+      document.getElementById('video').src = pelicula.video;
+      document.getElementById('sinopsis').textContent = pelicula.sinopsis;
+    } else {
+      document.getElementById('titulo').textContent = "Película no encontrada";
+      document.getElementById('sinopsis').textContent = "No existe información disponible para esta película.";
+    }
+  </script>
+</body>
+</html>

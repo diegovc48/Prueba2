@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservar Asientos - Luz y Sombra Cinema</title>
+  <style>
+    body {
+      background-color: #0a0e27;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #f7c600;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      background-color: #101437;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    form {
+      display: inline-block;
+    }
+
+    button {
+      background-color: #f7c600;
+      color: #0a0e27;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ffe059;
+    }
+
+    .volver {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: #f7c600;
+      text-decoration: none;
+    }
+
+    .volver:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Asientos disponibles para <span th:text="${funcion.pelicula.titulo}"></span></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Asiento</th>
+      <th>Estado</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="e : ${entradas}">
+      <td th:text="${e.asiento}">A1</td>
+      <td th:text="${e.estado}">DISPONIBLE</td>
+      <td>
+        <form th:action="@{'/reserva/cliente/' + ${e.id}}" method="post">
+          <button type="submit" th:if="${e.estado == 'DISPONIBLE'}">Reservar</button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a href="/cliente/cartelera" class="volver">← Volver a cartelera</a>
+
+</body>
+</html>

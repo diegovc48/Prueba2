@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservar Asientos</title>
+    <style>
+        body {
+            background-color: #0a0e27;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #f7c600;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        form {
+            display: inline;
+        }
+
+        button {
+            background-color: #f7c600;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            color: #0a0e27;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffe059;
+        }
+    </style>
+</head>
+<body>
+
+<h2 th:text="'Función: ' + ${funcion.pelicula.titulo}"></h2>
+<p th:text="'Sala ' + ${funcion.sala.numero} + ' - ' + ${funcion.fechaHora}"></p>
+
+<h3>Asientos disponibles:</h3>
+<ul>
+    <li th:each="e : ${entradas}">
+        Asiento <span th:text="${e.asiento}"></span>
+        <form th:action="@{'/clientes/reservar/' + ${e.id}}" method="post">
+            <button type="submit">Reservar</button>
+        </form>
+    </li>
+</ul>
+
+</body>
+</html>

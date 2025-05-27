@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Películas</title>
+    <style>
+        body {
+            background-color: #0a0e27;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #f7c600;
+            margin-bottom: 20px;
+        }
+
+        .btn-nueva {
+            display: inline-block;
+            margin-bottom: 20px;
+            background-color: #f7c600;
+            color: #0a0e27;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            background-color: #101437;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        th {
+            background-color: #1b1f40;
+        }
+
+        .acciones a {
+            margin-right: 10px;
+            color: #f7c600;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .acciones a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Películas Registradas</h2>
+
+    <a href="/peliculas/nueva" class="btn-nueva">+ Nueva Película</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Duración</th>
+                <th>Clasificación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pelicula : ${peliculas}">
+                <td th:text="${pelicula.id}">1</td>
+                <td th:text="${pelicula.titulo}">Ejemplo</td>
+                <td th:text="${pelicula.duracion} + ' min'">120 min</td>
+                <td th:text="${pelicula.clasificacion}">PG-13</td>
+                <td class="acciones">
+                    <a th:href="@{/peliculas/editar/{id}(id=${pelicula.id})}">Editar</a>
+                    <a th:href="@{/peliculas/eliminar/{id}(id=${pelicula.id})}" onclick="return confirm('¿Seguro que deseas eliminar esta película?')">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuarios - Luz y Sombra Cinema</title>
+  <style>
+    body {
+      background-color: #0a0e27;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+
+    h2 {
+      color: #f7c600;
+    }
+	.volver {
+				  display: inline-block;
+				  margin-top: 20px;
+				  color: #f7c600;
+				  font-weight: bold;
+				  text-decoration: none;
+				  background-color: transparent;
+				  text-align: center;
+				  transition: color 0.3s ease;
+				  display: block;
+				  margin: 20px auto 0;
+				  text-align: center;
+				  color: #f7c600;
+				  font-weight: bold;
+				  text-decoration: none;
+				}
+
+				.volver:hover {
+				  text-decoration: underline;
+				  color: #ffd700;
+				}
+    table {
+      width: 100%;
+      margin-top: 20px;
+      background-color: #101437;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      background-color: #1a1e3a;
+    }
+
+    a {
+      color: #f7c600;
+      margin-right: 10px;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Usuarios Registrados</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Rol</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="u : ${usuarios}">
+      <td th:text="${u.nombre + ' ' + u.apellido}">Nombre Apellido</td>
+      <td th:text="${u.correo}">correo@example.com</td>
+      <td th:text="${u.rol}">CLIENTE</td>
+      <td>
+        <a th:href="@{'/admin/usuarios/editar/' + ${u.id}}">✏️ Editar</a>
+        <a th:href="@{'/admin/usuarios/eliminar/' + ${u.id}}">🗑️ Eliminar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a href="/admin/inicio" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+
+</body>
+</html>

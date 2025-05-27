@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio Cliente</title>
+    <style>
+        body {
+            background-color: #0a0e27;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #f7c600;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #f7c600;
+            color: #0a0e27;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: #ffe059;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Bienvenido, [[${nombre}]]</h2>
+    <p>Explora la cartelera y reserva tus entradas.</p>
+
+	<a href="/cliente/cartelera" class="boton">Ver Cartelera</a>
+	<a href="/clientes/login" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+
+</body>
+</html>

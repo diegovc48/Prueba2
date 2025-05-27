@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cartelera Disponible</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #0a0e27;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #f7c600;
+      margin-bottom: 30px;
+    }
+
+    .mensaje {
+      background-color: #28a745;
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #101437;
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      background-color: #1a1f4c;
+      color: #f7c600;
+    }
+
+    a {
+      color: #f7c600;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      th {
+        display: none;
+      }
+
+      td {
+        padding: 10px;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid #444;
+        position: relative;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #ccc;
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Cartelera Disponible</h2>
+
+  <div th:if="${mensajeReserva}" class="mensaje">
+    <strong th:text="${mensajeReserva}"></strong>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Película</th>
+        <th>Sala</th>
+        <th>Fecha y hora</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="f : ${funciones}">
+        <td data-label="Película" th:text="${f.pelicula.titulo}">Película</td>
+        <td data-label="Sala" th:text="'Sala ' + ${f.sala.numero}">Sala</td>
+        <td data-label="Fecha" th:text="${#temporals.format(f.fechaHora, 'dd/MM/yyyy HH:mm')}">Fecha</td>
+        <td data-label="Acción">
+          <a th:href="@{'/cliente/cartelera/reservar/' + ${f.id}}"><i class="fas fa-chair"></i> Ver Asientos</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="/clientes/login" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+
+</body>
+</html>

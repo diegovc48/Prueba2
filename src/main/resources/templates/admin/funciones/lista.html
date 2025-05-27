@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Funciones - Luz y Sombra Cinema</title>
+  <style>
+    body {
+      background-color: #0a0e27;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+
+    h2 {
+      color: #f7c600;
+    }
+
+    a.boton {
+      background-color: #f7c600;
+      color: #0a0e27;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      background-color: #101437;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }	  .volver {
+	  			  display: inline-block;
+	  			  margin-top: 20px;
+	  			  color: #f7c600;
+	  			  font-weight: bold;
+	  			  text-decoration: none;
+	  			  background-color: transparent;
+	  			  text-align: center;
+	  			  transition: color 0.3s ease;
+	  			  display: block;
+	  			  margin: 20px auto 0;
+	  			  text-align: center;
+	  			  color: #f7c600;
+	  			  font-weight: bold;
+	  			  text-decoration: none;
+	  			}
+
+	  			.volver:hover {
+	  			  text-decoration: underline;
+	  			  color: #ffd700;
+	  			}
+
+    th {
+      background-color: #1a1e3a;
+    }
+
+    a.accion {
+      margin-right: 10px;
+      color: #f7c600;
+      text-decoration: none;
+    }
+
+    a.accion:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Gestión de Funciones</h2>
+
+  <a class="boton" href="/admin/funciones/nueva">➕ Nueva Función</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Película</th>
+        <th>Sala</th>
+        <th>Fecha y Hora</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="f : ${funciones}">
+        <td th:text="${f.pelicula.titulo}">Nombre Película</td>
+        <td th:text="${f.sala.numero}">1</td>
+        <td th:text="${f.fechaHora}">2025-05-25T20:00</td>
+        <td>
+          <a class="accion" th:href="@{'/admin/funciones/editar/' + ${f.id}}">✏️ Editar</a>
+          <a class="accion" th:href="@{'/admin/funciones/eliminar/' + ${f.id}}">🗑️ Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="/admin/inicio" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+
+</body>
+</html>
