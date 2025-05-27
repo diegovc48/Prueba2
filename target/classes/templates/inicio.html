@@ -1,0 +1,338 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Luz y Sombra Cinema</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f0f0;
+      color: #0a0e27;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgb(0, 0, 128);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.8em;
+      letter-spacing: 1px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+	.menu-icon {
+	      font-size: 30px;
+	      cursor: pointer;
+	      color: white;
+	      user-select: none;
+	    }
+
+	    .roles-menu {
+	      position: absolute;
+	      top: 60px;
+	      left: 30px;
+	      background-color: white;
+	      color: #0a0e27;
+	      border-radius: 8px;
+	      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	      width: 230px;
+	      display: none;
+	      z-index: 1000;
+	    }
+
+	    .roles-menu a {
+	      display: block;
+	      padding: 12px 20px;
+	      text-decoration: none;
+	      color: #0a0e27;
+	      font-weight: bold;
+	    }
+
+	    .roles-menu a:hover {
+	      background-color: #f7f7f7;
+	    }
+		
+		.nav-links {
+		  display: flex;
+		  align-items: center;
+		}
+
+		.nav-links a {
+		  margin: 0 15px;
+		  color: white;
+		  text-decoration: none;
+		  font-weight: bold;
+		  padding: 8px 12px;
+		  border-radius: 20px;
+		  transition: background 0.2s ease;
+		}
+
+		.nav-links a:hover {
+		  background-color: #1a1e3a;
+		}
+
+		.usuario-icono {
+		  position: relative;
+		  cursor: pointer;
+		  margin-left: 20px;
+		}
+
+		.usuario-icono img {
+		  width: 35px;
+		  height: 35px;
+		  border-radius: 50%;
+		}
+    /* Carrusel */
+    .carousel-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      height: 350px;
+      margin-bottom: 40px;
+    }
+
+    .carousel {
+      display: flex;
+      animation: scroll 20s linear infinite;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Doble fila para efecto de bucle */
+    .carousel-track {
+      display: flex;
+      width: 200%;
+    }
+
+    /* Sección de películas */
+    .section-title {
+      text-align: center;
+      font-size: 2em;
+      color: #0054a6;
+      margin-bottom: 10px;
+    }
+
+    .movies {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+    }
+	
+	
+
+    .movie-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 280px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .movie-info {
+      padding: 15px;
+    }
+
+    .movie-info h3 {
+      margin-top: 0;
+      color: rgb(0, 0, 128);
+    }
+
+    .movie-info p {
+      margin: 4px 0;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0a0e27;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+	
+	<div class="navbar">
+	  <!-- Icono Menú de Roles -->
+	  <div class="menu-icon" onclick="toggleRolesMenu()">☰</div>
+
+	  <!-- Menú de roles -->
+	  <div id="rolesMenu" class="roles-menu" style="display: none;">
+	    <a href="/login/admin">Administrador</a>
+	    <a href="/login/taquillero">Taquillero</a>
+	    <a href="/login/supervisor">Supervisor de Sala</a>
+	    <a href="/login/cartelera">Encargado Cartelera</a>
+	  </div>
+
+	  <!-- Título -->
+	  <h1>Luz y Sombra Cinema</h1>
+
+
+	  <!-- Menú usuario derecha -->
+	  <div class="nav-links">
+	    <div class="usuario-icono" onclick="toggleDropdown()">
+	      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="usuario" style="width: 30px; cursor: pointer;">
+	    </div>
+	    <div class="dropdown" id="userDropdown" style="display: none;">
+	      <a href="/clientes/login">Iniciar sesión</a>
+	      <a href="/clientes/registro">Registrarse</a>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Scripts para mostrar/ocultar menús -->
+	<script>
+	  function toggleRolesMenu() {
+	    const menu = document.getElementById("rolesMenu");
+	    menu.style.display = menu.style.display === "block" ? "none" : "block";
+	  }
+
+	  function toggleDropdown() {
+	    const dropdown = document.getElementById("userDropdown");
+	    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+	  }
+
+	  // Opcional: cerrar menús al hacer clic fuera
+	  document.addEventListener("click", function (event) {
+	    const rolesMenu = document.getElementById("rolesMenu");
+	    const userDropdown = document.getElementById("userDropdown");
+
+	    if (!event.target.closest(".menu-icon")) {
+	      rolesMenu.style.display = "none";
+	    }
+
+	    if (!event.target.closest(".usuario-icono")) {
+	      userDropdown.style.display = "none";
+	    }
+	  });
+	</script>
+
+
+  <!-- Carrusel -->
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <div class="carousel">
+        <img src="https://img.asmedia.epimg.net/resizer/v2/UABOXQLFTZGYHKLMQYMD3MHWWU.jpg?auth=0576e43f12ad9b83f55057ce66e879fd10533d2eeb4315cdc05b9f752799fcc2&width=1472" alt="Pelicula 1">
+        <img src="https://th.bing.com/th?id=OIF.2tinqAa30WxM3ka%2bhRKWtA&rs=1&pid=ImgDetMain" alt="Pelicula 2">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.FaLPMpap8naGEpEQbJASHgHaK9?rs=1&pid=ImgDetMain" alt="Pelicula 3">
+        <img src="https://m.media-amazon.com/images/M/MV5BNzY1NmU2MDgtMDQxNC00MTQ4LTgxMWQtYWNkOWMyZWFlODZiXkEyXkFqcGdeQXVyMjQwMjk0NjI@._V1_FMjpg_UX1000_.jpg" alt="Pelicula 4">
+      </div>
+      <div class="carousel">
+        <img src="https://th.bing.com/th/id/R.82fb4e9511d735daaf21d3cb3067fef0?rik=ZvuR2SCEEVE32A&riu=http%3a%2f%2fwww.cines.com.py%2fimages%2fdinamico%2fpeliculas%2f2095%2fafiche%2fmision_imposible_repercucion_poster_4_latino_jposters.jpg&ehk=pkVfchAyQAsqmsLW5C9IonraYq2YU9z0M1b%2b7UVBT6I%3d&risl=&pid=ImgRaw&r=0" alt="Pelicula 1">
+        <img src="https://imagenes.20minutos.es/uploads/imagenes/2024/04/29/primer-poster-de-mufasa-la-precuela-de-el-rey-leon.jpeg" alt="Pelicula 2">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.FaLPMpap8naGEpEQbJASHgHaK9?rs=1&pid=ImgDetMain" alt="Pelicula 3">
+        <img src="https://image.tmdb.org/t/p/original/fryDtXgd6Cf4oqNlNPHas0GWDNM.jpg" alt="Pelicula 4">
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Películas -->
+  <h2 class="section-title">Solo en Cine</h2>
+  <div class="movies">
+    <div class="movie-card">
+      <img src="https://img.asmedia.epimg.net/resizer/v2/UABOXQLFTZGYHKLMQYMD3MHWWU.jpg?auth=0576e43f12ad9b83f55057ce66e879fd10533d2eeb4315cdc05b9f752799fcc2&width=1472" alt="Pelicula">
+      <div class="movie-info">
+        <h3>lilo y stitch</h3>
+        <p><strong>Estreno:</strong> 10 de mayo 2025</p>
+        <p><strong>Género:</strong> Comedia</p>
+        <p><strong>Clasificación:</strong> Mayores de 7 año</p>
+      </div>
+    </div>
+    <div class="movie-card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.FaLPMpap8naGEpEQbJASHgHaK9?rs=1&pid=ImgDetMain" alt="Pelicula">
+      <div class="movie-info">
+        <h3>Ballerina</h3>
+        <p><strong>Estreno:</strong> 17 de mayo 2025</p>
+        <p><strong>Género:</strong> Accion</p>
+        <p><strong>Clasificación:</strong> Solo mayores de 15 años</p>
+      </div>
+	  
+    </div>
+    <div class="movie-card">
+      <img src="https://m.media-amazon.com/images/M/MV5BNzY1NmU2MDgtMDQxNC00MTQ4LTgxMWQtYWNkOWMyZWFlODZiXkEyXkFqcGdeQXVyMjQwMjk0NjI@._V1_FMjpg_UX1000_.jpg" alt="Pelicula">
+      <div class="movie-info">
+        <h3>Final Destination</h3>
+        <p><strong>Estreno:</strong> 3 de junio 2025</p>
+        <p><strong>Género:</strong> Horror </p>
+        <p><strong>Clasificación:</strong> Mayores de 15 años</p>
+      </div>
+    </div>
+  </div>
+
+  
+  
+    <div class="movies">
+      <div class="movie-card">
+        <img src="https://imagenes.20minutos.es/uploads/imagenes/2024/04/29/primer-poster-de-mufasa-la-precuela-de-el-rey-leon.jpeg" alt="Pelicula">
+        <div class="movie-info">
+          <h3> Mufasa</h3>
+          <p><strong>Estreno:</strong> 10 de mayo 2025</p>
+          <p><strong>Género:</strong> Comedia </p>
+          <p><strong>Clasificación:</strong> Mayores de 7 años</p>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://th.bing.com/th?id=OIF.2tinqAa30WxM3ka%2bhRKWtA&rs=1&pid=ImgDetMain" alt="Pelicula">
+        <div class="movie-info">
+          <h3> Mission impossible </h3>
+          <p><strong>Estreno:</strong> 17 de mayo 2025</p>
+          <p><strong>Género:</strong> Accion </p>
+          <p><strong>Clasificación:</strong> Solo mayores de 13 años </p>
+        </div>
+  	  
+      </div>
+      <div class="movie-card">
+        <img src="https://cdn.kinocheck.com/i/evi0tokgqw.jpg" alt="Pelicula">
+        <div class="movie-info">
+          <h3> Ballerina </h3>
+          <p><strong>Estreno:</strong> 3 de junio 2025</p>
+          <p><strong>Género:</strong> Comedia </p>
+          <p><strong>Clasificación:</strong> Mayores de 7 años</p>
+        </div>
+      </div>
+    </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Luz y Sombra Cinema | Todos los derechos reservados
+  </footer>
+
+</body>
+</html> 

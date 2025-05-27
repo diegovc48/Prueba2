@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Película - Luz y Sombra Cinema</title>
+  <style>
+    body {
+      background-color: #0a0e27;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #f7c600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+	.volver {
+	  display: inline-block;
+	  margin-top: 20px;
+	  color: #f7c600;
+	  font-weight: bold;
+	  text-decoration: none;
+	  background-color: transparent;
+	  text-align: center;
+	  transition: color 0.3s ease;
+	  display: block;
+	  margin: 20px auto 0;
+	  text-align: center;
+	  color: #f7c600;
+	  font-weight: bold;
+	  text-decoration: none;
+	}
+
+	.volver:hover {
+	  text-decoration: underline;
+	  color: #ffd700;
+	}
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #101437;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #f7c600;
+      color: #0a0e27;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #ffe059;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 th:text="${pelicula.id != null} ? 'Editar Película' : 'Nueva Película'">Formulario</h2>
+
+  <form action="/admin/peliculas/guardar" method="post" th:object="${pelicula}">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Título:</label>
+    <input type="text" th:field="*{titulo}" required>
+
+    <label>Duración (en minutos):</label>
+    <input type="number" th:field="*{duracion}" required>
+
+    <label>Clasificación:</label>
+    <input type="text" th:field="*{clasificacion}" required>
+
+    <button type="submit">Guardar</button>
+  </form>
+  <a href="/admin/peliculas" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+</body>
+</html>

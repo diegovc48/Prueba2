@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del Administrador - Luz y Sombra Cinema</title>
+    <style>
+        body {
+            background-color: #0a0e27;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #f7c600;
+        }
+
+        .menu {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .opcion {
+            background-color: #101437;
+            padding: 20px;
+            border-radius: 10px;
+            width: 220px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .opcion:hover {
+            background-color: #1a1e3a;
+        }
+		.volver {
+			  display: inline-block;
+			  margin-top: 20px;
+			  color: #f7c600;
+			  font-weight: bold;
+			  text-decoration: none;
+			  background-color: transparent;
+			  text-align: center;
+			  transition: color 0.3s ease;
+			  display: block;
+			  margin: 20px auto 0;
+			  text-align: center;
+			  color: #f7c600;
+			  font-weight: bold;
+			  text-decoration: none;
+			}
+
+			.volver:hover {
+			  text-decoration: underline;
+			  color: #ffd700;
+			}	
+
+        .opcion span {
+            display: block;
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #f7c600;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Bienvenido, Administrador</h2>
+<p>Selecciona una opción para gestionar:</p>
+
+<div class="menu">
+    <a class="opcion" href="/admin/peliculas">
+        <span>🎬</span>
+        Películas
+    </a>
+    <a class="opcion" href="/admin/salas">
+        <span>🎟️</span>
+        Salas
+    </a>
+    <a class="opcion" href="/admin/usuarios">
+        <span>👥</span>
+        Usuarios
+    </a>
+    <a class="opcion" href="/admin/funciones">
+        <span>📅</span>
+        Funciones
+    </a>
+    <a class="opcion" href="/admin/reportes">
+        <span>📊</span>
+        Reportes
+    </a>
+</div>
+
+<a href="/" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+</body>
+</html>

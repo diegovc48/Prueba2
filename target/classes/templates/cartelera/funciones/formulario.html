@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Función</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0e27;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background-color: #101437;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      max-width: 450px;
+      color: white;
+    }
+
+    h2 {
+      text-align: center;
+      color: #f7c600;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    select, input[type="datetime-local"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #f7c600;
+      color: #0a0e27;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffd700;
+    }
+
+    .volver {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #f7c600;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .volver:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2 th:text="${funcion.id != null} ? 'Editar Función' : 'Nueva Función'">Nueva Función</h2>
+
+    <form th:action="@{/cartelera/guardar}" th:object="${funcion}" method="post">
+      <input type="hidden" th:field="*{id}" />
+
+      <label>Película:</label>
+      <select th:field="*{pelicula.id}" required>
+        <option th:each="p : ${peliculas}" th:value="${p.id}" th:text="${p.titulo}">Película</option>
+      </select>
+
+      <label>Sala:</label>
+      <select th:field="*{sala.id}" required>
+        <option th:each="s : ${salas}" th:value="${s.id}" th:text="${s.numero}">Sala</option>
+      </select>
+
+      <label>Fecha y hora:</label>
+      <input type="datetime-local" th:field="*{fechaHora}" required>
+
+      <button type="submit">Guardar Función</button>
+    </form>
+
+    <a href="/cartelera/inicio" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+  </div>
+
+</body>
+</html>

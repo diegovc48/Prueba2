@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0e27;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background-color: #101437;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+
+    .icono-admin {
+      font-size: 60px;
+      color: #f7c600;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #f7c600;
+      margin-bottom: 25px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      color: #999;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 12px 12px 38px;
+      border-radius: 8px;
+      border: none;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #f7c600;
+      color: #0a0e27;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffd700;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .volver {
+      display: block;
+      margin-top: 20px;
+      color: #f7c600;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .volver:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px;
+        border-radius: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icono-admin">
+      <i class="fas fa-film"></i>
+    </div>
+    <h2>Login Administrador</h2>
+	<form th:action="@{/login/admin}" method="post">
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" name="correo" placeholder="Correo" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Contraseña" required>
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+    <a href="/" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+    <div class="error">[[${error}]]</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Cliente - Luz y Sombra Cinema</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #0a0e27;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: white;
+    }
+
+    .card {
+      background-color: #101437;
+      padding: 30px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      width: 320px;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 40px;
+      color: #f7c600;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f7c600;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-size: 14px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #f7c600;
+      color: #0a0e27;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #ffe36b;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .volver {
+      display: block;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #f7c600;
+      text-decoration: none;
+    }
+
+    .volver:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icon"><i class="fas fa-popcorn"></i></div>
+  <h2>Iniciar Sesión Cliente</h2>
+  <form action="/clientes/login" method="post">
+    <label>Correo:</label>
+    <input type="email" name="correo" placeholder="correo@ejemplo.com" required>
+
+    <label>Contraseña:</label>
+    <input type="password" name="password" placeholder="********" required>
+
+    <button type="submit">Ingresar</button>
+    <div class="error">[[${error}]]</div>
+  </form>
+
+  <a href="/" class="volver">← Volver al inicio</a>
+</div>
+
+</body>
+</html>

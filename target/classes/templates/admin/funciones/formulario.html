@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Función - Luz y Sombra Cinema</title>
+  <style>
+    body {
+      background-color: #0a0e27;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #f7c600;
+      text-align: center;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #101437;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #f7c600;
+      color: #0a0e27;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+	.volver {
+		  display: inline-block;
+		  margin-top: 20px;
+		  color: #f7c600;
+		  font-weight: bold;
+		  text-decoration: none;
+		  background-color: transparent;
+		  text-align: center;
+		  transition: color 0.3s ease;
+		  display: block;
+		  margin: 20px auto 0;
+		  text-align: center;
+		  color: #f7c600;
+		  font-weight: bold;
+		  text-decoration: none;
+		}
+
+		.volver:hover {
+		  text-decoration: underline;
+		  color: #ffd700;
+		}
+
+    button:hover {
+      background-color: #ffe059;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 th:text="${funcion.id != null} ? 'Editar Función' : 'Nueva Función'">Formulario Función</h2>
+
+  <form th:action="@{/cartelera/guardar}" method="post" th:object="${funcion}">
+    <input type="hidden" th:field="*{id}" />
+
+    <label>Película:</label>
+    <select th:field="*{pelicula.id}" required>
+      <option value="" disabled selected>Selecciona una película</option>
+      <option th:each="p : ${peliculas}" th:value="${p.id}" th:text="${p.titulo}"></option>
+    </select>
+
+    <label>Sala:</label>
+    <select th:field="*{sala.id}" required>
+      <option value="" disabled selected>Selecciona una sala</option>
+      <option th:each="s : ${salas}" th:value="${s.id}" th:text="'Sala ' + ${s.numero}"></option>
+    </select>
+
+    <label>Fecha y hora:</label>
+    <input type="datetime-local" th:field="*{fechaHora}" required />
+
+    <button type="submit">Guardar</button>
+  </form>
+<a href="/admin/funciones" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+</body>
+</html>

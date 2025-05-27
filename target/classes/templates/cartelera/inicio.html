@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cartelera - Encargado</title>
+    <style>
+        body {
+            background-color: #0a0e27;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #f7c600;
+            text-align: center;
+        }
+
+        .acciones {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a.boton {
+            background-color: #f7c600;
+            color: #0a0e27;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            background-color: #101437;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+            text-align: center;
+        }			.volver {
+					  display: inline-block;
+					  margin-top: 20px;
+					  color: #f7c600;
+					  font-weight: bold;
+					  text-decoration: none;
+					  background-color: transparent;
+					  text-align: center;
+					  transition: color 0.3s ease;
+					  display: block;
+					  margin: 20px auto 0;
+					  text-align: center;
+					  color: #f7c600;
+					  font-weight: bold;
+					  text-decoration: none;
+					}
+
+					.volver:hover {
+					  text-decoration: underline;
+					  color: #ffd700;
+					}
+
+        a {
+            color: #f7c600;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Cartelera Semanal</h2>
+
+<div class="acciones">
+    <a class="boton" href="/cartelera/nueva">Programar Nueva Función</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Película</th>
+            <th>Sala</th>
+            <th>Fecha y hora</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="f : ${funciones}">
+            <td th:text="${f.pelicula.titulo}">Pelicula</td>
+            <td th:text="'Sala ' + ${f.sala.numero}">Sala</td>
+            <td th:text="${f.fechaHora}">FechaHora</td>
+            <td>
+                <a th:href="@{'/cartelera/editar/' + ${f.id}}">✏️</a>
+                <a th:href="@{'/cartelera/eliminar/' + ${f.id}}" onclick="return confirm('¿Seguro que deseas eliminar esta función?')">🗑️</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a href="/" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+
+</body>
+</html>

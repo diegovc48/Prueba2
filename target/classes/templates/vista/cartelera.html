@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cartelera - Cliente</title>
+    <style>
+        body {
+            background-color: #0a0e27;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #f7c600;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #101437;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+            text-align: center;
+        }
+
+        a {
+            color: #f7c600;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Cartelera</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Película</th>
+            <th>Sala</th>
+            <th>Fecha y Hora</th>
+            <th>Reservar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="f : ${funciones}">
+            <td th:text="${f.pelicula.titulo}">Película</td>
+            <td th:text="${f.sala.numero}">Sala</td>
+            <td th:text="${f.fechaHora}">Fecha</td>
+            <td>
+                <a th:href="@{'/clientes/reservar/' + ${f.id}}">🪑 Ver Asientos</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
